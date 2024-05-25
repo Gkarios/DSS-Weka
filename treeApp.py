@@ -1,6 +1,6 @@
 import streamlit as st
 
-# Define the decision tree prediction function
+# TREE
 def predict_student_performance(features):
     G1 = features['G1']
     absences = features['absences']
@@ -17,7 +17,7 @@ def predict_student_performance(features):
 
     if G1 < 11.5:
         if G1 < 8.5:
-            if absences < 1:
+            if absences > 20:
                 return 5
             else:
                 if Fjob == 'teacher':
@@ -31,7 +31,7 @@ def predict_student_performance(features):
                         return 9.2
                     elif reason == 'reputation of school':
                         return 9.83
-                elif Fjob == 'services':
+                elif Fjob == 'civil services':
                     if reason == "school's course program":
                         return 8.5
                     elif reason == 'other':
@@ -40,23 +40,23 @@ def predict_student_performance(features):
                         return 8.5
                     elif reason == 'reputation of school':
                         return 8
-                elif Fjob == 'health':
+                elif Fjob == 'healthcare related':
                     return 7
                 elif Fjob == 'at_home':
                     return 8.29
         else:
-            if failures < 0.5:
+            if failures == 'no':
                 if G1 < 10.5:
                     if absences < 20:
                         if age < 16.5:
                             if absences < 1.5:
                                 if Mjob == 'at_home':
                                     return 9.25
-                                elif Mjob == 'health':
+                                elif Mjob == 'healthcare related':
                                     return 11
                                 elif Mjob == 'other':
                                     return 11
-                                elif Mjob == 'services':
+                                elif Mjob == 'civil services':
                                     return 11.71
                                 elif Mjob == 'teacher':
                                     return 12
@@ -70,19 +70,19 @@ def predict_student_performance(features):
                                     if goout < 4.5:
                                         if Mjob == 'at_home':
                                             return 10.8
-                                        elif Mjob == 'health':
+                                        elif Mjob == 'healthcare related':
                                             return 11.27
                                         elif Mjob == 'other':
                                             return 12.33
-                                        elif Mjob == 'services':
+                                        elif Mjob == 'civil services':
                                             return 11
                                         elif Mjob == 'teacher':
                                             return 11
                                     else:
                                         return 10.67
-                                elif Fjob == 'services':
+                                elif Fjob == 'civil services':
                                     return 10.11
-                                elif Fjob == 'health':
+                                elif Fjob == 'healthcare related':
                                     return 10.58
                                 elif Fjob == 'at_home':
                                     return 10
@@ -138,17 +138,18 @@ def predict_student_performance(features):
                     else:
                         return 17.54
 
-# Define the Streamlit app
+
+#STREAMLIT
 st.title("Predict Student's Performance")
 
-# Get user input
+#USER INPUT
 age = st.number_input("Age", min_value=15, max_value=20, step=1)
 Pstatus = st.selectbox("Parental status", [ "living together", "living apart"])
 Mjob = st.selectbox("Mother's job", ["civil services", "healthcare related", "at_home", "teacher", "other"])
 Fjob = st.selectbox("Father's job", ["civil services", "healthcare related", "at_home", "teacher", "other"])
 reason = st.selectbox("Reason for choosing the school", ["reputation of school", "school's course program", "close from home", "other", ])
-activities = st.selectbox("Extra-curricular activities", ["yes", "no"])
-failures = st.number_input("Past failed classes", min_value=0, max_value=5, step=1)
+activities = st.selectbox("Extra-curricular activities", ["no", "yes"])
+failures = st.selectbox("Past failed classes", ["no", "yes"])
 studytime = st.selectbox("Daily study Time", ["More than 3 hours", "Less than 3 hours"])
 famrel = st.number_input("Time spent with family (hours)", min_value=0, max_value=15, step=1)
 goout = st.number_input("Time spent outside (hours)", min_value=0, max_value=10, step=1)
@@ -156,7 +157,7 @@ absences = st.number_input("Absences", min_value=0, max_value=150, step=1)
 Fedu = st.selectbox("Father's Education Level", ["Has finished high school", "Has not finished high school"])
 G1 = st.number_input("Grade during first Semester", min_value=0.0, max_value=20.0, step=0.1)
 
-# Collect user input into a dictionary
+#CONVERSION
 user_input = {
     'Pstatus': Pstatus,
     'Mjob': Mjob,
@@ -173,8 +174,7 @@ user_input = {
     'Fedu': Fedu
 }
 
-# Make prediction
+#PREDICTION
 if st.button("Predict"):
     prediction = predict_student_performance(user_input)
     st.write(f"Prediction: {prediction}")
-
