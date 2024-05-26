@@ -150,7 +150,7 @@ Fjob = st.selectbox("Father's job", ["civil services", "healthcare related", "at
 reason = st.selectbox("Reason for choosing the school", ["reputation of school", "school's course program", "close from home", "other", ])
 activities = st.selectbox("Extra-curricular activities", ["no", "yes"])
 failures = st.selectbox("Past failed classes", ["no", "yes"])
-studytime = st.selectbox("Daily study Time", ["More than 3 hours", "Less than 3 hours"])
+studytime = st.selectbox("Daily study Time", ["Less than 3 hours", "More than 3 hours"])
 famrel = st.number_input("Time spent with family (hours)", min_value=0, max_value=15, step=1)
 goout = st.number_input("Time spent outside (hours)", min_value=0, max_value=10, step=1)
 absences = st.number_input("Absences", min_value=0, max_value=150, step=1)
