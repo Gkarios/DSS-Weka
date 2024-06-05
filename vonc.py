@@ -43,78 +43,71 @@ def convert_tree_to_code(tree_structure):
     return "\n".join(code_lines)
 
 tree_structure = """
-G1 < 11.5
-|   G1 < 8.5
-|   |   absences < 1 : 5 (19/19.57) [11/20.23]
-|   |   absences >= 1
-|   |   |   Fjob = teacher : 11 (1/0) [0/0]
-|   |   |   Fjob = other
-|   |   |   |   reason = course : 8.86 (17/1.24) [4/0.92]
-|   |   |   |   reason = other : 8 (3/0.22) [2/0.94]
-|   |   |   |   reason = home : 9.2 (4/0.5) [1/1]
-|   |   |   |   reason = reputation : 9.83 (5/1.2) [1/1]
-|   |   |   Fjob = services
-|   |   |   |   reason = course : 8.5 (5/0.16) [3/3.31]
-|   |   |   |   reason = other : 5.5 (1/0) [1/1]
-|   |   |   |   reason = home : 8.5 (1/0) [1/1]
-|   |   |   |   reason = reputation : 8 (2/0) [1/0]
-|   |   |   Fjob = health : 7 (2/1) [0/0]
-|   |   |   Fjob = at_home : 8.29 (3/1.56) [4/1.19]
-|   G1 >= 8.5
-|   |   failures < 0.5
-|   |   |   G1 < 10.5
-|   |   |   |   absences < 20
-|   |   |   |   |   age < 16.5
-|   |   |   |   |   |   absences < 1.5
-|   |   |   |   |   |   |   Mjob = at_home : 9.25 (2/0.25) [2/0.25]
-|   |   |   |   |   |   |   Mjob = health : 11 (1/0) [0/0]
-|   |   |   |   |   |   |   Mjob = other : 11 (6/0) [1/0]
-|   |   |   |   |   |   |   Mjob = services : 11.71 (5/1.36) [2/12.24]
-|   |   |   |   |   |   |   Mjob = teacher : 12 (1/0) [0/0]
-|   |   |   |   |   |   absences >= 1.5 : 10.21 (24/1.21) [14/1.03]
-|   |   |   |   |   age >= 16.5
-|   |   |   |   |   |   reason = course
-|   |   |   |   |   |   |   Fjob = teacher : 9 (1/0) [0/0]
-|   |   |   |   |   |   |   Fjob = other
-|   |   |   |   |   |   |   |   goout < 4.5
-|   |   |   |   |   |   |   |   |   Mjob = at_home : 10.8 (3/0) [2/0.5]
-|   |   |   |   |   |   |   |   |   Mjob = health : 11.27 (0/0) [0/0]
-|   |   |   |   |   |   |   |   |   Mjob = other : 12.33 (1/0) [2/0.5]
-|   |   |   |   |   |   |   |   |   Mjob = services : 11 (1/0) [0/0]
-|   |   |   |   |   |   |   |   |   Mjob = teacher : 11 (2/0) [0/0]
-|   |   |   |   |   |   |   |   goout >= 4.5 : 10.67 (5/0.24) [1/2.56]
-|   |   |   |   |   |   |   Fjob = services : 10.11 (2/0) [7/0.71]
-|   |   |   |   |   |   |   Fjob = health : 10.58 (0/0) [0/0]
-|   |   |   |   |   |   |   Fjob = at_home : 10 (2/0) [2/0]
-|   |   |   |   |   |   reason = other : 10.2 (3/0.89) [2/1.61]
+failures < 0.5
+|   higher = yes
+|   |   studytime < 1.5 : 11.92 (91/6.15) [50/6.15]
+|   |   studytime >= 1.5
+|   |   |   schoolsup = yes
+|   |   |   |   Fjob = teacher : 12.33 (6/1.22) [0/0]
+|   |   |   |   Fjob = other : 11.79 (20/2.01) [9/6.09]
+|   |   |   |   Fjob = services : 9 (3/2) [4/26.25]
+|   |   |   |   Fjob = health : 11.25 (2/1) [2/2.5]
+|   |   |   |   Fjob = at_home : 12.33 (2/4) [1/1]
+|   |   |   schoolsup = no
+|   |   |   |   traveltime < 2.5
+|   |   |   |   |   studytime < 2.5
+|   |   |   |   |   |   Fjob = teacher : 15.18 (9/5.58) [2/6.09]
+|   |   |   |   |   |   Fjob = other
+|   |   |   |   |   |   |   Mjob = at_home : 11.54 (8/3.5) [5/3.05]
+|   |   |   |   |   |   |   Mjob = health : 13.45 (7/4.78) [4/1.9]
+|   |   |   |   |   |   |   Mjob = other
+|   |   |   |   |   |   |   |   famrel < 3.5 : 10.57 (3/0.22) [4/10.19]
+|   |   |   |   |   |   |   |   famrel >= 3.5
+|   |   |   |   |   |   |   |   |   Walc < 1.5
+|   |   |   |   |   |   |   |   |   |   famsup = no : 12 (6/3.47) [5/5.36]
+|   |   |   |   |   |   |   |   |   |   famsup = yes
+|   |   |   |   |   |   |   |   |   |   |   reason = course : 12.6 (4/0.25) [1/0.25]
+|   |   |   |   |   |   |   |   |   |   |   reason = other : 13.82 (0/0) [0/0]
+|   |   |   |   |   |   |   |   |   |   |   reason = home : 13 (3/0) [0/0]
+|   |   |   |   |   |   |   |   |   |   |   reason = reputation : 16.67 (2/1) [1/4]
+|   |   |   |   |   |   |   |   |   Walc >= 1.5 : 14.26 (16/7.11) [11/2.16]
+|   |   |   |   |   |   |   Mjob = services : 13.95 (16/3.31) [6/6]
+|   |   |   |   |   |   |   Mjob = teacher : 12.11 (11/4.38) [7/25.2]
+|   |   |   |   |   |   Fjob = services : 12.29 (30/6.09) [22/19.7]
+|   |   |   |   |   |   Fjob = health : 13.33 (6/8.81) [3/11.81]
+|   |   |   |   |   |   Fjob = at_home : 13.56 (6/4.22) [3/10.11]
+|   |   |   |   |   studytime >= 2.5
+|   |   |   |   |   |   reason = course : 13.58 (28/4.68) [10/7.44]
+|   |   |   |   |   |   reason = other : 16 (6/1.67) [0/0]
 |   |   |   |   |   |   reason = home
-|   |   |   |   |   |   |   Pstatus = A : 13.5 (2/0.25) [0/0]
-|   |   |   |   |   |   |   Pstatus = T
-|   |   |   |   |   |   |   |   activities = no : 10.88 (7/0.29) [1/1]
-|   |   |   |   |   |   |   |   activities = yes : 12.25 (4/0.19) [0/0]
-|   |   |   |   |   |   reason = reputation : 11.57 (7/1.39) [0/0]
-|   |   |   |   absences >= 20 : 7.5 (2/2.25) [0/0]
-|   |   |   G1 >= 10.5
-|   |   |   |   absences < 8.5
+|   |   |   |   |   |   |   absences < 5.5
+|   |   |   |   |   |   |   |   Mjob = at_home : 14 (2/1) [0/0]
+|   |   |   |   |   |   |   |   Mjob = health : 14 (1/0) [0/0]
+|   |   |   |   |   |   |   |   Mjob = other
+|   |   |   |   |   |   |   |   |   sex = F : 13 (3/0.22) [2/3.78]
+|   |   |   |   |   |   |   |   |   sex = M : 15.33 (2/0) [1/1]
+|   |   |   |   |   |   |   |   Mjob = services : 14.67 (3/0.22) [0/0]
+|   |   |   |   |   |   |   |   Mjob = teacher : 15 (1/0) [1/4]
+|   |   |   |   |   |   |   absences >= 5.5 : 12 (2/0.25) [1/2.25]
+|   |   |   |   |   |   reason = reputation
+|   |   |   |   |   |   |   age < 16.5
+|   |   |   |   |   |   |   |   Mjob = at_home : 12 (0/0) [1/3.57]
+|   |   |   |   |   |   |   |   Mjob = health : 17 (1/0) [0/0]
+|   |   |   |   |   |   |   |   Mjob = other : 13.17 (5/1.44) [1/6.76]
+|   |   |   |   |   |   |   |   Mjob = services : 13 (3/0.22) [1/1.78]
+|   |   |   |   |   |   |   |   Mjob = teacher : 13.33 (0/0) [0/0]
+|   |   |   |   |   |   |   age >= 16.5
+|   |   |   |   |   |   |   |   studytime < 3.5 : 14.38 (6/2.89) [7/9.83]
+|   |   |   |   |   |   |   |   studytime >= 3.5 : 16.71 (4/0.69) [3/12.06]
+|   |   |   |   traveltime >= 2.5
 |   |   |   |   |   reason = course
-|   |   |   |   |   |   Fedu < 2.5 : 11.35 (11/1.69) [9/1.74]
-|   |   |   |   |   |   Fedu >= 2.5 : 13 (7/0.69) [4/1.84]
-|   |   |   |   |   reason = other : 11.58 (9/1.14) [3/2.31]
-|   |   |   |   |   reason = home : 12 (12/1.41) [5/2.41]
-|   |   |   |   |   reason = reputation : 11.65 (10/1.44) [7/2.22]
-|   |   |   |   absences >= 8.5 : 10.38 (5/0.64) [3/0.23]
-|   |   failures >= 0.5 : 9.37 (29/9.72) [20/1.89]
-G1 >= 11.5
-|   G1 < 13.5 : 12.89 (25/3.61) [5/5.11]
-|   G1 >= 13.5
-|   |   G1 < 15.5
-|   |   |   age < 16.5 : 14.34 (18/2.1) [2/3.15]
-|   |   |   age >= 16.5
-|   |   |   |   famrel < 3.5 : 14.18 (9/2.12) [1/0.75]
-|   |   |   |   famrel >= 3.5 : 15.64 (6/0.8) [4/0.6]
-|   |   G1 >= 15.5
-|   |   |   G1 < 16.5 : 16.45 (7/0.5) [0/0]
-|   |   |   G1 >= 16.5 : 17.54 (2/0.5) [0/0]
+|   |   |   |   |   |   goout < 4.5 : 14.2 (6/4.81) [4/1.19]
+|   |   |   |   |   |   goout >= 4.5 : 10 (3/0.22) [2/0.94]
+|   |   |   |   |   reason = other : 7.83 (4/18.69) [2/4.06]
+|   |   |   |   |   reason = home : 12 (3/0.67) [0/0]
+|   |   |   |   |   reason = reputation : 14 (3/0.67) [0/0]
+|   higher = no : 9.89 (27/3.41) [9/1.56]
+failures >= 0.5 : 8.59 (68/13.6) [32/4.9]
 """
 
 python_code = convert_tree_to_code(tree_structure)
